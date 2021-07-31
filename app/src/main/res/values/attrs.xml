@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorText" format="color"/>
+    <attr name="listBackground" format="color"/>
+
+    <declare-styleable name="PersonalInfoItemView">
+        <attr name="android:text" />
+        <attr name="android:src" />
+    </declare-styleable>
+</resources>
