@@ -44,6 +44,11 @@ class UserListFragment : BaseFragment() {
         observableLiveData()
     }
 
+    override fun onDestroy() {
+        adapter.clear()
+        super.onDestroy()
+    }
+
     private fun setOnClickListener() {
         adapter.onItemClicked = {
             UserDetailActivity.start(requireActivity(), it.login)

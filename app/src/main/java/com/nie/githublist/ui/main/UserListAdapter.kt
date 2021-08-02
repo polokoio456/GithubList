@@ -17,6 +17,18 @@ import io.reactivex.rxkotlin.addTo
 
 class UserListAdapter : PagingDataAdapter<User, UserListAdapter.UserListViewHolder>(COMPARATOR) {
 
+    companion object {
+        private val COMPARATOR = object : DiffUtil.ItemCallback<User>() {
+            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
     private val compositeDisposable = CompositeDisposable()
 
     var onItemClicked = { _: User ->  }
@@ -32,17 +44,7 @@ class UserListAdapter : PagingDataAdapter<User, UserListAdapter.UserListViewHold
         }
     }
 
-    companion object {
-        private val COMPARATOR = object : DiffUtil.ItemCallback<User>() {
-            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem == newItem
-            }
-        }
-    }
+    fun clear() = compositeDisposable.clear()
 
     class UserListViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
 
